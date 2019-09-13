@@ -1,0 +1,357 @@
+-- Completely re-written by DBM for Rahien Sorei
+VER = "Rahien Sorei Asshattery, v3.0";
+
+-- Stolen shamelessly from: 
+-- Power of LeeroyHillCats  combined cross-faction mod! (Leeroy / Benny Hill / Thundercats / HEMAN!)
+-- Written by Barogio <Victory or Valhalla> of Thunderhorn with help from Moomin!
+-- Benny sample from Benny Hill mod by Catalyst + Springbeard of Thunderhorn
+
+-- Create the list of commands and parameters
+-- These are default values, but some (enabled state) can be overridden by saved variables below
+rsa_list = {}
+table.insert(rsa_list,{ name="tba", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\tba.mp3", post=" screams, 'You're the best...around!'", length=5 })
+table.insert(rsa_list,{ name="bh", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\bh.mp3", post=" gives it some quick Benny Hill!", length=9 })
+table.insert(rsa_list,{ name="bh2", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\bh2.mp3", post=" gives it some Benny Hill!", length=36, enabled=false })
+table.insert(rsa_list,{ name="leeroy", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\ler.mp3", post=" invokes the power of Leeroy Jenkins!", length=4 })
+table.insert(rsa_list,{ name="tcat", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\tc.mp3", post=" yells, 'Thundercats HO!'", length=6 })
+table.insert(rsa_list,{ name="heman", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\hm.mp3", post=" yells, 'BY THE POWER OF GREYSKULL!'", length=10 })
+table.insert(rsa_list,{ name="llama", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\lam1.mp3", post=" llamas it up", length=5 })
+table.insert(rsa_list,{ name="llama2", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\lam2.mp3", post=" llamas longer", length=40, enabled=false })
+table.insert(rsa_list,{ name="eot", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\eot1.mp3", post=" gets ready to rumble", length=18 })
+table.insert(rsa_list,{ name="eot2", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\eot2.mp3", post=" is the Eye of the Tiger", length=21 })
+table.insert(rsa_list,{ name="banana", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\ban.mp3", post=" gets ready to kill himself", length=11 })
+table.insert(rsa_list,{ name="firemaw", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\FiremawChantEnd.mp3", post=" chants like a monk", length=14 })
+table.insert(rsa_list,{ name="asses", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\asseskicked.mp3", post=" gets his ass kicked", length=5, death=true })
+table.insert(rsa_list,{ name="wta", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\wheretheyare.mp3", post=" wonders where they are?", length=7 })
+table.insert(rsa_list,{ name="exel", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\expresselevator.mp3", post=" is on the express elevator", length=4 })
+table.insert(rsa_list,{ name="game", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\gameover.mp3", post=" checks the game clock", length=4, death=true })
+table.insert(rsa_list,{ name="crickets", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\crickets.mp3", post=" listens to the sounds of silence", length=7 })
+table.insert(rsa_list,{ name="ftc", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\failuretocommunicate.mp3", post=" is not reached", length=6 })
+table.insert(rsa_list,{ name="grail", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\holygrail.mp3", post=" averts his eyes", length=6 })
+table.insert(rsa_list,{ name="bright", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\brightside.mp3", post=" looks for silver lining", length=8, death=true })
+table.insert(rsa_list,{ name="boyd", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\bringoutyourdead.mp3", post=" is not dead yet", length=4, death=true })
+table.insert(rsa_list,{ name="repressed", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\repressed.mp3", post=" shouts for help!", length=2, death=true })
+table.insert(rsa_list,{ name="violence", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\violenceinherent.mp3", post=" is a stupid peasant", length=2, death=true })
+table.insert(rsa_list,{ name="deliv", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\deliv.mp3", post=" squeals like a pig", length=5 })
+table.insert(rsa_list,{ name="spam", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\spamandspam.mp3", post=" doesn't like spam!", length=11 })
+table.insert(rsa_list,{ name="ateam", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\ateam.mp3", post=" loves it when a plan comes together", length=9 })
+table.insert(rsa_list,{ name="dance", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\letsdance.mp3", post=" sways through the crowd to an empty space", length=7 })
+table.insert(rsa_list,{ name="haha", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\haha.mp3", post=" points and laughs", length=2, death=true })
+table.insert(rsa_list,{ name="ego", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\ego_cash.mp3", post=" requests permission for a flyby", length=4 })
+table.insert(rsa_list,{ name="rubberdog", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\rubberdog.mp3", post=" screws up a little", length=7, death=true })
+table.insert(rsa_list,{ name="score", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\score.mp3", post=" starts the clock", length=4 })
+table.insert(rsa_list,{ name="pity", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\pity.mp3", post=" pities the fool who tries to take what I got", length=1 })
+table.insert(rsa_list,{ name="khan", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\khan.mp3", post=" yells, 'Khaaaaaaaaaaaan!'", length=1 })
+table.insert(rsa_list,{ name="jackass", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\jackasscut.mp3", post=" tries this at home", length=20 })
+table.insert(rsa_list,{ name="zombo", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\zombo2.mp3", post=" is only limited by himself", length=13 })
+table.insert(rsa_list,{ name="ten", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\tensecondspal.mp3", post=" starts counting down", length=2 })
+table.insert(rsa_list,{ name="bomb", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\bombdeactivated.mp3", post=" cuts the red wire", length=4 })
+table.insert(rsa_list,{ name="body", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\machomanbody.mp3", post=" DOES NOT touch the body", length=7 })
+table.insert(rsa_list,{ name="dope", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\ondope.mp3", post=" is dumbfounded", length=2 })
+table.insert(rsa_list,{ name="invincible", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\invincible.mp3", post=" spurts blood from his arms", length=3, death=true })
+table.insert(rsa_list,{ name="hallucinate", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\hallucinate.mp3", post=" eats the red pill", length=5 })
+table.insert(rsa_list,{ name="wasted", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\imwasted.mp3", post=" hits his head with a sneaker", length=2 })
+table.insert(rsa_list,{ name="ayb", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\ayb4.mp3", post=" is on the wave of destruction", length=2 })
+table.insert(rsa_list,{ name="gravity", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\gravity.mp3", post=" wants it one more time, but harder", length=2, death=true })
+table.insert(rsa_list,{ name="spoon", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\spoon4.mp3", post=" is a little bit hungry", length=2 })
+table.insert(rsa_list,{ name="funky", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\monkeyfunky.mp3", post=" feels funky", length=5 })
+table.insert(rsa_list,{ name="crazy", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\goingsane.mp3", post=" likes the padded walls", length=7 })
+table.insert(rsa_list,{ name="emb", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\emb.mp3", post=" says, 'Yeah baby yeah!'", length=7 })
+table.insert(rsa_list,{ name="read", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\readabook.mp3", post=" sulks in his tent", length=5 })
+table.insert(rsa_list,{ name="chicken", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\chicken.mp3", post=" prepares for ludicrous speed", length=4 })
+table.insert(rsa_list,{ name="dumb", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\dumb.mp3", post=" takes the side of evil", length=5 })
+table.insert(rsa_list,{ name="rickroll", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\rickroll.mp3", post=" is never gonna give you up", length=10 })
+table.insert(rsa_list,{ name="tase", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\tase.mp3", post=" screams in pain", length=1, death=true })
+table.insert(rsa_list,{ name="tunak", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\tunak.mp3", post=" dances the dranei dance", length=4 })
+table.insert(rsa_list,{ name="tunak2", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\tunak2.mp3", post=" does an extended dranei dance", length=14, enabled=false })
+table.insert(rsa_list,{ name="desert", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\weaintfound.mp3", post=" uses a pick to comb the desert", length=2 })
+table.insert(rsa_list,{ name="conan", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\conan.mp3", post=" wonders what is best in life", length=11 })
+table.insert(rsa_list,{ name="chumba", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\igetknockeddown.mp3", post=" pisses the night away", length=5, death=true })
+table.insert(rsa_list,{ name="kick", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\kicked.mp3", post=" believes the flowers are still standing", length=3 })
+table.insert(rsa_list,{ name="mama", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\knockyouout.mp3", post=" calls it a comeback", length=5, death=true })
+table.insert(rsa_list,{ name="1in3", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\1in3.mp3", post=" rolls the dice", length=4, death=true })
+table.insert(rsa_list,{ name="intruder", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\intruder.mp3", post=" sounds the alarm", length=2 })
+table.insert(rsa_list,{ name="splitup", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\split_up.mp3", post=" takes the high road, you take the low road", length=4 })
+table.insert(rsa_list,{ name="tongue", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\tongue.mp3", post=" licks himself", length=3 })
+table.insert(rsa_list,{ name="wakeup", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\wake_up.mp3", post=" hates wipefests", length=2, death=true })
+table.insert(rsa_list,{ name="meteors", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\meteors.mp3", post=" whistles and looks around innocently", length=1, death=true })
+table.insert(rsa_list,{ name="ufo", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\ufoporno3.mp3", post=" makes one third of an alien sandwich dance team", length=9 })
+table.insert(rsa_list,{ name="turn", sound="Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\gothatway.mp3", post=" wonders what the street value of this mountain is", length=8 })
+
+--sort the table by name
+table.sort(rsa_list, function (a,b)
+	return (a.name < b.name)
+end);
+
+--set up death table
+rsa_death = {}
+
+--set up saved data array, for use in disabling sounds.  All sounds are considered enabled by default.
+rsa_saved = {};
+
+--these globals are saved
+rsa_globals = {};
+rsa_globals["enabled"] = true;
+rsa_globals["raidEnabled"] = true;
+rsa_globals["emotesEnabled"] = false;
+rsa_globals["death"] = true;
+rsa_globals["debug"] = true;	-- used to control whether debug messages are printed
+--copy the array for use in load event
+rsa_globals_default = rsa_globals;
+
+--Set some global variables
+rsa_TimeTilNext = time();	-- used to prevent more than one sound from playing at once
+
+
+--set global values - can be used for functions that don't need a custom message
+function rsa_set_globals(command, setting)
+	if (setting == "enable") then
+		rsa_globals[command] = true;
+		DEFAULT_CHAT_FRAME:AddMessage("RSA command '" .. command .. "' set to " .. tostring(rsa_globals[command]), 1, 0, 0);
+	elseif (setting == "disable") then
+		rsa_globals[command] = false;
+		DEFAULT_CHAT_FRAME:AddMessage("RSA command '" .. command .. "' set to " .. tostring(rsa_globals[command]), 1, 0, 0);
+	elseif (setting == "") then
+		DEFAULT_CHAT_FRAME:AddMessage("Current setting of '" .. command .. "': " .. tostring(rsa_globals[command]), 1, 0, 0);
+	else
+		DEFAULT_CHAT_FRAME:AddMessage("RSA: Unknown argument for '" .. command .. "': " .. setting, 1, 0, 0);
+	end
+end
+
+-- function to process slash commands
+function rsa_command(msg)
+	local _, _, command, args = string.find(msg, "(%w+)%s?(.*)");
+	if(command) then
+		command = strlower(command);
+	end
+	
+	local found = false;
+	if (command and command ~= "") then
+		for k,v in pairs(rsa_list) do
+			if (command == v.name) then
+				found = true;
+				if (args ~= "") then
+					if (args == "enable") then
+						rsa_saved[v.name] = nil;
+						DEFAULT_CHAT_FRAME:AddMessage("RSA sound '" .. command .. "' enabled", 1, 1, 0);
+					elseif (args == "disable") then
+						rsa_saved[v.name]={}
+						rsa_saved[v.name]["enabled"] = false;
+						DEFAULT_CHAT_FRAME:AddMessage("RSA sound '" .. command .. "' disabled", 1, 1, 0);
+					else
+						DEFAULT_CHAT_FRAME:AddMessage("RSA: Unknown argument for '" .. command .. "': " .. args, 1, 0, 0);
+					end
+				else
+					if (not rsa_globals["enabled"]) then
+						DEFAULT_CHAT_FRAME:AddMessage("RSA mod currently disabled.  Type '/rsa load enable' to re-enable RSA.", 1, 0, 0);
+					elseif (not rsa_globals["raidEnabled"] and GetNumGroupMembers() > 0) then
+						DEFAULT_CHAT_FRAME:AddMessage("RSA mod currently disabled while in a raid.  Type '/rsa raid enable' to re-enable RSA in raids.", 1, 0, 0);
+					else
+						if (rsa_saved[v.name] and rsa_saved[v.name]["enabled"] == false) then
+							DEFAULT_CHAT_FRAME:AddMessage("RSA sound '" .. command .. "' is currently disabled.  Type '/rsa " .. command .. " enable' to re-enable this sound.", 1, 0, 0);
+						else
+							--Send out the AddOn Message
+							 C_ChatInfo.SendAddonMessage("RSA",v.name,"RAID"); --will send to PARTY if not in a raid.  Won't send anything if not in party or raid.
+							--DBM need to add logic for battleground, to avoid doublesending?
+							--SendAddonMessage("RSA",k,"BATTLEGROUND"); --will send to PARTY if not in a raid.  Won't send anything if not in party or raid.
+							
+							-- Process request request directly, in case you're not in a RAID or PARTY yourself, but just want to hear the sound
+							rsa_ProcessSoundRequest(v.name,(UnitName("player")));
+						end
+					end
+				end
+			end
+			
+			if found then return end	--no need to keep looking, we found the right name/command
+		end
+		
+--		if (found) then return end	-- if a match is found in the array of commands, don't bother going farther down this function
+	end
+		
+	-- no matches found yet, so keep looking
+	if (command == "load") then
+		if(args == "enable") then
+			rsa_globals["enabled"] = true;
+			DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery is now enabled!", 1, 1, 0);
+		elseif(args == "disable") then
+			rsa_globals["enabled"] = false;
+			DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery is now disabled...:( ", 1, 1, 0);
+		elseif (args == "") then
+			if (rsa_globals["enabled"] == false) then
+				DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery is currently disabled...:( ", 1, 1, 0);
+			else
+				DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery is currently enabled!", 1, 1, 0);
+			end
+		else
+			DEFAULT_CHAT_FRAME:AddMessage("RSA: Unknown argument for '" .. command .. "': " .. args, 1, 0, 0);
+		end
+	elseif (command == "raid") then
+		if(args == "enable") then
+			rsa_globals["raidEnabled"] = true;
+			DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery can now be used in raids!", 1, 1, 0);
+		elseif(args == "disable") then
+			rsa_globals["raidEnabled"] = false;
+			DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery can no longer be used in raids...:( ", 1, 1, 0);
+		elseif (args == "") then
+			if (rsa_globals["raidEnabled"] == false) then
+				DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery cannot be used in raids...:( ", 1, 1, 0);
+			else
+				DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery can be used in raids!", 1, 1, 0);
+			end
+		else
+			DEFAULT_CHAT_FRAME:AddMessage("RSA: Unknown argument for '" .. command .. "': " .. args, 1, 0, 0);
+		end
+	elseif (command == "death") then
+		if(args == "enable") then
+			rsa_globals["death"] = true;
+			DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery now playing sounds when you die.", 1, 1, 0);
+		elseif(args == "disable") then
+			rsa_globals["death"] = false;
+			DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery no longer playing sounds when you die.", 1, 1, 0);
+		elseif (args == "") then
+			if (rsa_globals["death"] == false) then
+				DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery not currently set to play sounds when you die.", 1, 1, 0);
+			else
+				DEFAULT_CHAT_FRAME:AddMessage("Rahien Sorei Asshattery currently set to play sounds when you die!", 1, 1, 0);
+			end
+		else
+			DEFAULT_CHAT_FRAME:AddMessage("RSA: Unknown argument for '" .. command .. "': " .. args, 1, 0, 0);
+		end
+	elseif (command == "debug") then
+		rsa_set_globals(command, args);
+	else
+		--either no command, or an unrecognized one
+		if(command and command ~= "") then	--unrecognized command
+			DEFAULT_CHAT_FRAME:AddMessage("RSA: Unknown command: '" .. command .. "'", 1, 0, 0);
+		end
+		
+		--now show all known commands
+		kc = "";
+		for k,v in ipairs(rsa_list) do
+			if (kc ~= "") then kc = kc .. ", "; end
+			kc = kc .. v.name;
+		end
+		DEFAULT_CHAT_FRAME:AddMessage("List of possible global commands: load (enable|disable), raid (enable|disable), death (enable|disable)", 1, 1, 0);
+		DEFAULT_CHAT_FRAME:AddMessage("For example, '/rsa load disable' will disable this mod.", 1, 1, 0);
+		DEFAULT_CHAT_FRAME:AddMessage("List of possible sounds: " .. kc, 1, 1, 0);
+		DEFAULT_CHAT_FRAME:AddMessage("Play sounds with '/rsa <sound>'.  Enable/disable sounds with '/rsa <sound> (enable|disable)'." , 1, 1, 0);
+	end
+end
+SlashCmdList["RSA"] = rsa_command;
+SLASH_RSA1 = "/rsa";
+SLASH_RSA2 = "/rahiensoreiasshattery";
+
+
+function RSA_OnEvent(event, arg1)
+
+	if (event == "VARIABLES_LOADED") then
+		DEFAULT_CHAT_FRAME:AddMessage(VER .. " enabled",0,1,0);
+	elseif ((event == "ADDON_LOADED") and (arg1 == "RahienSoreiAsshattery")) then	--this event fires after saved variables are loaded
+		--load globals
+		for k,v in pairs(rsa_globals_default) do
+			if (rsa_globals[k] == nil) then
+				rsa_globals[k] = rsa_globals_default[k];
+			end
+		end
+		
+		--load death table
+		for k,v in pairs(rsa_list) do
+			if v.death and (not (v.enabled == false)) then table.insert(rsa_death,{name=v.name,sound=v.sound}) end
+		end
+	end
+
+  --
+
+	--special event to automatically fire during Magmadar
+	if (event == "CHAT_MSG_RAID") then
+	   resultftw = string.find( arg1, "AE FEAR ALERT");
+		if (resultftw ~= nil) then
+			PlaySoundFile("Interface\\AddOns\\RahienSoreiAsshattery\\Sounds\\bh.mp3");
+		end
+	end
+	
+	if (event == "PLAYER_DEAD") then
+		if (rsa_globals["death"]) then
+			PlaySoundFile(rsa_death[math.random(#rsa_death)]["sound"]);
+		end
+	end
+
+	if (event == "CHAT_MSG_ADDON") then
+		-- arg1 = prefix, arg2 = msg, arg3 = RAID|PARTY|BATTLEGROUND|GUILD, arg4 = sender
+		if (arg1 == "RSA") then
+			-- Don't do anything if you were the sender - you're already playing the sound at send time, in case you're not in a party and can't use the CHAT_MSG_ADDON msg
+			if (arg4 ~= (UnitName("player"))) then
+				rsa_ProcessSoundRequest(arg2, arg4);
+			end
+		end
+	end
+end
+
+function rsa_ProcessSoundRequest(rsa_sound, player)
+	-- Make sure add-on is enabled, and raid enabled if in a raid
+	if (not rsa_globals["enabled"]) then return; end
+	if ((not rsa_globals["raidEnabled"]) and (GetNumGroupMembers() > 0)) then return; end
+	
+	local emoteinfo = ChatTypeInfo["EMOTE"];
+	local found = false;
+	for k,v in pairs(rsa_list) do
+		if (rsa_sound == v.name) then
+			found = true;
+			if (rsa_saved[v.name] and rsa_saved[v.name]["enabled"]==false) then
+				DEFAULT_CHAT_FRAME:AddMessage("RSA sound '" .. v.name .. "' has been disabled.", 1, 1, 0);
+			else
+				if (time() >= rsa_TimeTilNext) then
+					local poststring = v.post
+					-- Now replace him with her.  Do only in post string
+					-- Can only check sex using UnitIDs, so have to scan through whole raid/party lists
+					local UnitIDName = "";
+					if (player == (UnitName("player"))) then
+						UnitIDName = "player";
+					elseif(GetNumGroupMembers() > 0) then
+						local raidMemberString;
+						for i = 1, GetNumGroupMembers(), 1 do
+							raidMemberString = "raid" .. i --add the suffix of corresponding player
+							if ((UnitName(raidMemberString)) == player) then
+								UnitIDName = raidMemberString;	
+							end
+						end
+					elseif(GetNumGroupMembers() > 0) then
+						local partyMemberString;
+						for i = 1, GetNumGroupMembers(), 1 do
+							partyMemberString = "party" .. i --add the suffix of corresponding player
+							if ((UnitName(partyMemberString)) == player) then
+								UnitIDName = partyMemberString;	
+							end
+						end
+					end
+					
+					rsa_printDebug("UnitIDName is '" .. tostring(UnitIDName) .. "'");
+					
+					-- Assuming you found a match (you should), now check sex and replace if needed
+					if (UnitIDName ~= "") then
+						if (UnitSex(UnitIDName) == 3) then	--1=neutral/unknown, 2=male, 3=female
+							poststring = string.gsub(poststring," him"," her");
+							poststring = string.gsub(poststring," his"," her");
+						end
+					end
+					
+					-- Add pseudo emote
+					DEFAULT_CHAT_FRAME:AddMessage(player .. poststring, emoteinfo.r, emoteinfo.g, emoteinfo.b);
+					
+					PlaySoundFile(v.sound);
+					rsa_TimeTilNext = time() + v.length;
+-- DBM add real emote support
+				else
+					DEFAULT_CHAT_FRAME:AddMessage("Another RSA sound is already playing.", 1, 1, 0);
+				end
+			end
+		end
+		if found then break end	--no need to keep looking, we found and played the file
+	end
+end
+
+function rsa_printDebug(msg)
+	if (rsa_globals["debug"]) then
+		DEFAULT_CHAT_FRAME:AddMessage("RSADebug: " .. tostring(msg), 1, 0, 0);
+	end
+end
